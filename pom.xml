@@ -80,12 +80,7 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
-            <scope>test</scope>
-        </dependency>
+
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
             <groupId>io.cucumber</groupId>

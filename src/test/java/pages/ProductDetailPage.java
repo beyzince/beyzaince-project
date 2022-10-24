@@ -1,7 +1,6 @@
 package pages;
 
 
-import com.aventstack.extentreports.ExtentTest;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.BaseTest;
 
-import java.io.IOException;
 import java.util.Random;
 
 import static pages.CartPage.orderSummaryTitle;
@@ -40,7 +38,7 @@ public class ProductDetailPage  extends  BasePage{
         writeToTxt(productDescription, productColor, productPrice);
     }
 
-    public void addToBasket() throws IOException {
+    public void addToBasket()  {
         detailPrice = getText(productPrice);
         int bodySizeCount = findElements(productSize).size();
 
@@ -60,11 +58,11 @@ public class ProductDetailPage  extends  BasePage{
             Assert.assertEquals(expectedText, actualText);
     }
 
-    public void checkPriceInBasket() throws IOException {
+    public void checkPriceInBasket() {
 
             click(addedToCartBtn);
             checkElementVisible(orderSummaryTitle);
             String salePrice = getText(productSalePrice);
-                Assert.assertEquals(detailPrice, salePrice);
+            Assert.assertEquals(detailPrice, salePrice);
     }
 }

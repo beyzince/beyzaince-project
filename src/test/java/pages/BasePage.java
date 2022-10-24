@@ -1,10 +1,8 @@
 package pages;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.BaseTest;
@@ -19,44 +17,27 @@ import java.util.List;
 public class BasePage  {
     public WebDriver driver;
     public WebDriverWait wait;
-    Actions action;
-
     public BasePage() {
         this.driver = BaseTest.driver;
         this.wait = new WebDriverWait(driver, 10);
     }
 
-
-    //JavascriptExecutor js;
-
-
-
-//    public WebElement presenceElement(By key) {
-//        return wait.until(ExpectedConditions.presenceOfElementLocated(key));
-//    }
-    public List<WebElement> presenceElements(By key) {
-        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(key));
+    public List<WebElement> presenceElements(By locator) {
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
     }
 
     public  void waitForLocator(By locator){
         wait.until(ExpectedConditions.elementToBeClickable(locator));
 
     }
-//    public WebElement findBy(By locator){
-//        return driver.findElement(locator);
-//
-//
-//    }
 
-    public WebElement findBy(By key) {
-        //WebElement element=presenceElement(key);
-        //scrollToElement(element);
-        return driver.findElement(key);
+
+    public WebElement findBy(By locator) {
+        return driver.findElement(locator);
     }
 //
-    public List<WebElement> findElements(By key) {
-        List<WebElement> elements = presenceElements(key);
-        //scrollToElement(elements.get(0));
+    public List<WebElement> findElements(By locator) {
+        List<WebElement> elements = presenceElements(locator);
         return elements;
     }
 
@@ -82,11 +63,7 @@ public class BasePage  {
 //    {
 //        driver.manage().deleteAllCookies();
 //    }
-//    //maxwindow
-//    public void maximizeWindow(){
-//
-//        driver.manage().window().maximize();
-//    }
+
     public void click(By locator){
         waitForLocator(locator);
         findBy(locator).click();
@@ -119,17 +96,14 @@ public class BasePage  {
     public void checkElementClickable(By locator) {
         wait.until(ExpectedConditions.elementToBeClickable(findBy(locator)));
     }
-////public void scrollDown(){
-////    js.executeScript("window.scrollBy(0,600)");
-////}
-//
+
     public void scrollToElement(WebElement element) {
         String scrollElementIntoMiddle = "var viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);"
                 + "var elementTop = arguments[0].getBoundingClientRect().top;"
                 + "window.scrollBy(0, elementTop-(viewPortHeight/2));";
         ((JavascriptExecutor) driver).executeScript(scrollElementIntoMiddle, element);
     }
-//
+
     public void writeToTxt(By descriptionKey, By colorKey, By priceKey) {
         try {
             String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());

@@ -25,17 +25,27 @@ public class BeymenTestCases extends  BaseTest {
         homePage.searchInInput(0,"şort");
         homePage.clearSearch();
         homePage.searchInInput(1,"gömlek");
+        logger.info("press enter");
+
         homePage.pressEnter();
+        logger.info("random product  ");
+
         productListPage.getRandomProduct();
+        logger.info("write product  ");
+
 
         productDetailPage.writeProductInformation();
+        logger.info("add basket  ");
+
 
         productDetailPage.addToBasket();
+        logger.info("check price basket   ");
+
 
         productDetailPage.checkPriceInBasket();
-
-        cartPage.increaseQuantity("2");
-
+        logger.info("increase quantity");
+        cartPage.increaseQuantity("2 adet");
+        logger.info("delete basket  ");
         cartPage.deleteFromBasket();
 
 
